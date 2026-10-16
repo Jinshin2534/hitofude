@@ -1,0 +1,82 @@
+:root {
+  --paper: #f7f2e8;
+  --bg: #ece5d6;
+  --ink: #22262f;
+  --ink-2: #565b66;
+  --line: #d8cfbd;
+  --shu: #d4462a;
+  --ok: #2f6b4f;
+  --warn: #9a6a08;
+  --card: #fffdf8;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  line-height: 1.6;
+}
+button, select { font: inherit; }
+.top { max-width: 1180px; margin: 0 auto; padding: 20px 16px 6px; }
+h1 { font-family: 'Klee One', serif; font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.2rem); margin: 0; letter-spacing: 0.04em; }
+.slug { font-family: ui-monospace, monospace; font-size: 0.85rem; color: var(--ink-2); letter-spacing: 0; margin-left: 6px; }
+.lead { margin: 2px 0 0; color: var(--ink-2); }
+
+.layout {
+  max-width: 1180px; margin: 0 auto; padding: 10px 16px 16px;
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 18px; align-items: start;
+}
+@media (max-width: 860px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.tools { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+.tools button, .fix button, .play button {
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  padding: 7px 14px; border-radius: 999px; cursor: pointer;
+}
+.tools button:hover, .fix button:hover { border-color: var(--ink-2); }
+.preset { display: inline-flex; gap: 6px; align-items: center; margin-left: auto; color: var(--ink-2); font-size: 0.92rem; }
+.preset select { padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+
+.canvas-wrap { position: relative; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(60, 50, 30, 0.12); }
+canvas { display: block; width: 100%; aspect-ratio: 4 / 3; touch-action: none; cursor: crosshair; background: var(--paper); }
+.hint {
+  position: absolute; inset: 0; margin: auto; height: fit-content; max-width: 22em; padding: 0 16px;
+  text-align: center; color: var(--ink-2); pointer-events: none; font-family: 'Klee One', serif;
+}
+.preset-note { margin: 8px 2px 0; color: var(--ink-2); font-size: 0.92rem; }
+
+.panel { display: flex; flex-direction: column; gap: 12px; }
+.verdict { background: var(--card); border-radius: 14px; padding: 14px 16px; border-left: 6px solid var(--line); }
+.verdict.circuit, .verdict.path { border-left-color: var(--ok); }
+.verdict.impossible { border-left-color: var(--shu); }
+.v-title { margin: 0; font-family: 'Klee One', serif; font-size: 1.5rem; }
+.verdict.circuit .v-title, .verdict.path .v-title { color: var(--ok); }
+.verdict.impossible .v-title { color: var(--shu); }
+.v-sub { margin: 4px 0 0; color: var(--ink-2); }
+.v-sub:empty { display: none; }
+
+.counts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 0; }
+.counts div { background: var(--card); border-radius: 10px; padding: 6px 4px; text-align: center; }
+.counts dt { font-size: 0.75rem; color: var(--ink-2); }
+.counts dd { margin: 0; font-size: 1.35rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.counts .odd dd { color: var(--shu); }
+
+.fix { background: #fbeee9; border: 1px dashed var(--shu); border-radius: 14px; padding: 12px 14px; }
+.fix-title { margin: 0 0 4px; font-size: 1.1rem; }
+.fix-title b { color: var(--shu); font-size: 1.4rem; }
+.fix button { margin-top: 6px; border-color: var(--shu); color: var(--shu); }
+
+.play { display: flex; gap: 10px; align-items: center; }
+.play .primary { background: var(--ink); color: var(--paper); border-color: var(--ink); padding: 9px 20px; font-weight: 600; }
+.play .primary:disabled { opacity: 0.35; cursor: not-allowed; }
+.step { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+
+.notes p { margin: 0 0 6px; }
+.warn { color: var(--warn); background: #fbf3dc; border-radius: 10px; padding: 8px 10px; font-size: 0.92rem; }
+.small { font-size: 0.86rem; color: var(--ink-2); }
+.rule { background: var(--card); border-radius: 14px; padding: 10px 14px; font-size: 0.93rem; }
+.rule summary { cursor: pointer; font-weight: 600; }
+.rule ul { padding-left: 1.2em; margin: 6px 0; }
+.rule p { margin: 6px 0; }
+.foot { max-width: 1180px; margin: 0 auto; padding: 4px 16px 28px; color: var(--ink-2); font-size: 0.82rem; }
